@@ -1,47 +1,42 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-        public class Main {
+import java.util.ArrayList;
 
-            public static void main(String[] args) {
+public class Main {
 
-                // variable pour stocker un Etudiant
-                // Déclaration
-        Etudiant etu;
-        // Initialisation / construction
-        etu = new Etudiant();
+    public static void main(String[] args) {
 
-        Etudiant etu2 = new Etudiant("Bastien", 1990);
-        Etudiant etu3 = new Etudiant(2002);
+        // liste des étudiants
+        ArrayList<Etudiant> liste = new ArrayList<>();
 
-        System.out.println("Le premier etudiant s'appelle " + etu.getNom() );
-        etu.setNom("Claude");
-        System.out.println("Le premier etudiant s'appelle " + etu.getNom() );
+        // créer 25 étudiants
+        for(int i = 0; i < 25; i++) {
 
+            Etudiant e = new Etudiant("Etudiant" + i, 2000 + i);
 
-        // etu3.nom = "f*ck";
-        System.out.println(etu3.getNom());
-        etu3.setNom("f*ck");
-        System.out.println(etu3.getNom());
+            // ajouter 5 notes aléatoires
+            for(int j = 0; j < 5; j++) {
+                float note = (float)(Math.random() * 20);
+                e.ajoutNote(note);
+            }
 
-        System.out.println(etu.toString());
+            liste.add(e);
+        }
 
-        System.out.println(etu.age());
-        System.out.println(etu2.age());
-        System.out.println(etu3.age());
-        //met les note
-        etu.ajoutNote(12);
-        etu.ajoutNote(15);
-        etu.ajoutNote(9);
+        float sommeMoyennes = 0;
 
-        etu.voirNotes();
+        // afficher moyenne de chaque étudiant
+        for(int i = 0; i < liste.size(); i++) {
 
-        System.out.println("La note 1 est : " + etu.avoirNote(1));
+            Etudiant e = liste.get(i);
+            float moyenne = e.moyenne();
 
-        etu.modifierNote(1, 18);
+            System.out.println(e.getNom() + " : " + moyenne);
 
-        etu.voirNotes();
+            sommeMoyennes += moyenne;
+        }
 
-        System.out.println("Moyenne : " + etu.moyenne());
+        // moyenne générale
+        float moyenneGenerale = sommeMoyennes / liste.size();
+
+        System.out.println("Moyenne générale : " + moyenneGenerale);
     }
-
 }
