@@ -1,43 +1,141 @@
 import java.util.ArrayList;
 
 public class Etudiant {
-    // attributs privee
 
+    // attributs : PRIVÉS
     private String nom;
-    private int aneeNaissance;
+    private int anneeNaissance;
     private ArrayList<Float> notes;
+    private int id;
+    private double taille;
 
-    // methodes public
+    // méthodes
 
-    //constucteur
-    //constucteur par defaut
+    // constructeurs
+    // constructeur par défaut
     public Etudiant() {
-        System.out.println("Constructeur par default");
-        this.nom = "Huriye";
-        this.aneeNaissance = 1960;
+        System.out.println("Constructeur par défaut");
+        this.nom = "John";
+        this.anneeNaissance = 2007;
         this.notes = new ArrayList();
-
-
+        this.id = 1;
+        this.taille = 1.5;
     }
-    //constructeur parametrer
+
+    // constructeur paramétré
     public Etudiant(String n, int a) {
-        System.out.println("Constructeur parametre");
+        System.out.println("Constructeur paramétré 1");
         this.nom = n;
-        this.aneeNaissance = a;
+        this.anneeNaissance = a;
         this.notes = new ArrayList();
+        this.id = 1;
+        this.taille = 1.5;
     }
-    public Etudiant(int c) {
-        this.nom = "None";
-        this.aneeNaissance = c;
-        this.notes = new ArrayList();
-    }
-    //acceseurs GETTER + SETTER pour tout les attributs
 
+    public Etudiant(int a) {
+        System.out.println("Constructeur paramétré 2");
+        this.nom = "Bob";
+        this.anneeNaissance = a;
+        this.notes = new ArrayList<Float>();
+        this.id = 1;
+        this.taille = 1.5;
+    }
+
+    public Etudiant(String n, int a, int i, double t) {
+        this.nom = n;
+        this.anneeNaissance = a;
+        this.id = i;
+        this.taille = t;
+        this.notes = new ArrayList<Float>();
+    }
+
+    // accesseurs = GETTER + SETTER (pour chaque attribut)
     public String getNom() {
         return this.nom;
     }
+
     public void setNom(String n) {
-        this.nom = n;
+        if(n != "f*ck")
+            this.nom = n;
     }
 
+    public int getAnneeNaissance() {
+        return this.anneeNaissance;
+    }
+
+    public void setAnneeNaissance(int a) {
+        this.anneeNaissance = a;
+    }
+
+    public ArrayList<Float> getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(ArrayList<Float> n) {
+        this.notes = n;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int i) {
+        this.id = i;
+    }
+
+    public double getTaille() {
+        return this.taille;
+    }
+
+    public void setTaille(double t) {
+        this.taille = t;
+    }
+
+    @Override
+    public String toString() {
+        return "Etudiant s'appelant "+ this.nom +
+                " et qui est né en " + this.anneeNaissance +
+                " ayant l'identifiant " + this.id +
+                " et qui mesure " + this.taille + " mètres";
+    }
+
+    public int age() {
+        return 2026 - this.anneeNaissance;
+    }
+    // met une note
+    public void ajoutNote(float n) {
+        this.notes.add(n);
+    }
+
+    // affiche tt note
+    public void voirNotes() {
+        for(int i = 0; i < this.notes.size(); i++) {
+            System.out.println("Note " + i + " : " + this.notes.get(i));
+        }
+    }
+
+    // affiche tel not
+    public float avoirNote(int i) {
+        return this.notes.get(i);
+    }
+
+    // modifi
+    public void modifierNote(int i, float n) {
+        this.notes.set(i, n);
+    }
+
+    // moyenne calcul
+    public float moyenne() {
+        float somme = 0;
+
+        for(int i = 0; i < this.notes.size(); i++) {
+            somme += this.notes.get(i);
+        }
+
+        if(this.notes.size() == 0) {
+            return 0;
+        }
+
+        return somme / this.notes.size();
+    }
 }
